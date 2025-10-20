@@ -3,7 +3,7 @@ FROM film_category fc
 JOIN category c USING (category_id)
 JOIN film f USING (film_id)
 GROUP BY c.name
-ORDER BY COUNT(f.film_id) DESC
+ORDER BY COUNT(f.film_id) DESC;
 
 SELECT CONCAT(a.first_name,' ', a.last_name) AS actor, SUM(f.rental_duration)
 FROM film_actor
@@ -11,12 +11,12 @@ JOIN actor a USING (actor_id)
 JOIN film f USING (film_id)
 GROUP BY a.actor_id
 ORDER BY SUM(f.rental_duration) DESC
-LIMIT 10
+LIMIT 10;
 
 SELECT f.title, inventory_id
 FROM inventory i
 RIGHT JOIN film f USING (film_id)
-WHERE inventory_id IS NULL
+WHERE inventory_id IS NULL;
 
 WITH actor_count AS (
 	SELECT 
@@ -35,7 +35,7 @@ SELECT
 	films_amount,
 	rank_position
 FROM actor_count
-WHERE rank_position <= 3
+WHERE rank_position <= 3;
 
 SELECT 
     cl.city,
@@ -107,4 +107,5 @@ UNION ALL
     ORDER BY
         total_rental_hours DESC
     LIMIT 1
-)
+
+);
